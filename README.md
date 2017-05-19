@@ -8,14 +8,13 @@
 欢迎页不需要toolBar：
 </br>
 
-``` javascript ```
         setContentView(R.layout.activity_welcome ,-1 , MODE_NONE);
 
-``` 
+
 
 </br>
 </br>
-首页需要toolBar和Menu：
-``
+比如首页需要toolBar跟Menu就可以这么写：
+
         setContentView(R.layout.activity_main , R.string.app_name , R.menu.menu_home , MODE_HOME);
-``` 
+ 
