@@ -1,6 +1,7 @@
 package com.example.fenggao.myandroidframework.sample;
 
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.fenggao.myandroidframework.R;
@@ -19,9 +20,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void setUpData() {
         super.setUpData();
-        setContentView(R.layout.activity_main , R.string.app_name);
-        CustomApplication.mTestNullPointers = new ArrayList<>();
-        CustomApplication.mTestNullPointers.add("test");
+        setContentView(R.layout.activity_main , R.string.app_name , R.menu.menu_home , MODE_HOME);
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,5 +42,10 @@ public class HomeActivity extends BaseActivity {
             startActivity(new Intent(this, WelcomeActivity.class));
             finish();
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return super.onMenuItemClick(item);
     }
 }

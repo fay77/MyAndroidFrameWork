@@ -26,7 +26,7 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void setUpData() {
         super.setUpData();
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome ,-1 , MODE_NONE);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

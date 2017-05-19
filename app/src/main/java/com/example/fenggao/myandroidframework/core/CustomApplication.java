@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 
 public class CustomApplication extends Application {
-    public static ArrayList<String> mTestNullPointers;
 
     @Override
     public void onCreate() {

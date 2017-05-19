@@ -16,9 +16,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 class ProfileActivity : BaseActivity() {
     override fun setUpData() {
         super.setUpData()
-        setContentView(R.layout.activity_profile)
-        tv.text = CustomApplication.mTestNullPointers.toString()
-
+        setContentView(R.layout.activity_profile , R.string.app_name)
 
     }
 
