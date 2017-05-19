@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.fenggao.myandroidframework.MainActivity">
+    tools:context="com.example.fenggao.myandroidframework.sample.HomeActivity">
+
+    <include layout="@layout/widget_toolbar"/>
 
     <Button
         android:id="@+id/btn"

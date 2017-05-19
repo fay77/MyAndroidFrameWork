@@ -19,7 +19,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void setUpData() {
         super.setUpData();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main , R.string.app_name);
         CustomApplication.mTestNullPointers = new ArrayList<>();
         CustomApplication.mTestNullPointers.add("test");
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
