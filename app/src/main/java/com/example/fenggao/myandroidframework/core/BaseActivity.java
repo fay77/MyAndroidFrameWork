@@ -136,6 +136,14 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         }
     }
 
+    @Override
+    protected void onResume() {
+//        如果需要做手势解锁
+//        if (AppStatusTracker.getInstance().checkIfShowGesture()) {
+//            startActivity();
+//        }
+        super.onResume();
+    }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {

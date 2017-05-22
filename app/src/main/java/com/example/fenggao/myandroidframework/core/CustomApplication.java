@@ -13,5 +13,6 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AppStatusTracker.init(this);
     }
 }
