@@ -2,6 +2,10 @@ package com.example.fenggao.myandroidframework.core;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import com.example.fenggao.myandroidframework.constants.ConstantValues;
@@ -20,8 +24,11 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
     private int activeCount;
     private long timestamp;
     private boolean isScreenOff;
+    private DaemonReceiver mReceiver;
+    private Application mApplication;
 
     private AppStatusTracker(Application application) {
+        this.mApplication = application;
         application.registerActivityLifecycleCallbacks(this);
     }
 
@@ -38,7 +45,7 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
             if (isScreenOff) {
                 return true;
             }
-            if (System.currentTimeMillis() - timestamp > MAX_INTERVAL) {
+            if ( timestamp != 0l && System.currentTimeMillis() - timestamp > MAX_INTERVAL) {
                 return true;
             }
         }
@@ -51,6 +58,26 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
 
     public void setAppStatus(int appStatus) {
         mAppStatus = appStatus;
+        if (mAppStatus == ConstantValues.STATUS_ONLINE) {
+//            在登录的时候注册广播，没登录就不管
+            if (mReceiver == null) {
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(Intent.ACTION_SCREEN_OFF);
+                mReceiver = new DaemonReceiver();
+                mApplication.registerReceiver(mReceiver, filter);
+            }
+        } else if (mReceiver != null) {
+            mApplication.unregisterReceiver(mReceiver);
+            mReceiver = null;
+        }
+    }
+
+    public boolean isForgroung() {
+        return isForgroung;
+    }
+
+    private void onScreenOff(boolean isScreenOff) {
+        this.isScreenOff = isScreenOff;
     }
 
     @Override
@@ -99,5 +126,17 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
     public void onActivityDestroyed(Activity activity) {
         L.e(activity.toString() + "onActivityDestroyed");
 
+    }
+
+    private class DaemonReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            L.d("onReceive" + action);
+            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                AppStatusTracker.getInstance().onScreenOff(true);
+            }
+        }
     }
 }

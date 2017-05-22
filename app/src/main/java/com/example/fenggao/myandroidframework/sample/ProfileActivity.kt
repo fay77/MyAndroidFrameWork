@@ -14,9 +14,17 @@ import kotlinx.android.synthetic.main.activity_profile.*
  */
 
 class ProfileActivity : BaseActivity() {
-    override fun setUpData() {
-        super.setUpData()
+    override fun setUpContentView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         setContentView(R.layout.activity_profile , R.string.app_name)
+
+    }
+
+    override fun setUpView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setUpData() {
 
     }
 

@@ -21,6 +21,19 @@
         <item name="android:textColorPrimary">@color/gray</item>
 
     </style>
+    
+    <style name="RecycleViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+    
+    <style name="RecyclerItemStyle">
+        <!--api 11以上的波纹效果-->
+        <item name="android:background">?android:selectableItemBackground</item>
+    </style>
 
 
 </resources>

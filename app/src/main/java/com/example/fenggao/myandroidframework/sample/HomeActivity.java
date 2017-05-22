@@ -18,15 +18,23 @@ import java.util.ArrayList;
 public class HomeActivity extends BaseActivity {
 
     @Override
-    protected void setUpData() {
-        super.setUpData();
-        setContentView(R.layout.activity_main , R.string.app_name , R.menu.menu_home , MODE_HOME);
+    protected void setUpView() {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void setUpContentView() {
+        setContentView(R.layout.activity_main , R.string.app_name , R.menu.menu_home , MODE_HOME);
+    }
+
+    @Override
+    protected void setUpData() {
+
     }
 
     @Override

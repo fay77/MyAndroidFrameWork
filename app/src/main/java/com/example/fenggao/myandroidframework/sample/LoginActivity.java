@@ -19,9 +19,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected void setUpData() {
-        super.setUpData();
-        setContentView(R.layout.activity_login , R.string.app_name);
+    protected void setUpView() {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,5 +27,14 @@ public class LoginActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void setUpContentView() {
+        setContentView(R.layout.activity_login , R.string.app_name);
+    }
+
+    @Override
+    protected void setUpData() {
     }
 }

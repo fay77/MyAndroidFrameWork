@@ -3,6 +3,7 @@
           package="com.example.fenggao.myandroidframework">
 
     <application
+        android:name=".core.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

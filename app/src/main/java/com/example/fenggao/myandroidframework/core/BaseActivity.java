@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.fenggao.myandroidframework.R;
 import com.example.fenggao.myandroidframework.constants.ConstantValues;
 import com.example.fenggao.myandroidframework.sample.HomeActivity;
+import com.example.fenggao.myandroidframework.utils.L;
 
 /**
  * Created by feng.gao on 2017/5/17.
@@ -41,10 +42,19 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
             case ConstantValues.STATUS_LOGOUT:
             case ConstantValues.STATUS_ONLINE:
             case ConstantValues.STATUS_OFFLINE:
+                setUpContentView();
+                setUpView();
                 setUpData();
                 break;
         }
     }
+
+    protected abstract void setUpView();
+
+    protected abstract void setUpContentView();
+
+    protected abstract void setUpData();
+
 
     protected void kickOut() {
         // TODO: 2017/5/17 show dialog to confirm
@@ -53,9 +63,6 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         startActivity(intent);
     }
 
-    protected void setUpData() {
-
-    }
 
     protected void protectApp() {
         Intent intent = new Intent(this, HomeActivity.class);
@@ -137,12 +144,12 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     }
 
     @Override
-    protected void onResume() {
-//        如果需要做手势解锁
-//        if (AppStatusTracker.getInstance().checkIfShowGesture()) {
-//            startActivity();
-//        }
-        super.onResume();
+    protected void onStart() {
+        if (AppStatusTracker.getInstance().checkIfShowGesture()) {
+//            需要展示锁屏
+            L.d("need show gesture");
+        }
+        super.onStart();
     }
 
     @Override
