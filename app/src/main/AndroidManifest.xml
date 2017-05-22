@@ -21,6 +21,7 @@
         <activity android:name=".sample.HomeActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".sample.LoginActivity"/>
+        <activity android:name=".sample.SampleListActivity"/>
     </application>
 
 </manifest>

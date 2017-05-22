@@ -3,4 +3,5 @@
     <!--在这里写ID主要是为了约束的作用-->
     <item name="toolbar" type="id"/>
     <item name="toolbar_title" type="id"/>
+    <item name="recycleView" type="id"/>
 </resources>

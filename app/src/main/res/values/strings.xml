@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyAndroidFrameWork</string>
+    <string name="sample_list_title">Sample list</string>
 </resources>

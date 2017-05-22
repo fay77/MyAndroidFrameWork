@@ -54,6 +54,11 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        return super.onMenuItemClick(item);
+        switch (item.getItemId()) {
+            case R.id.test1:
+                startActivity(new Intent(this, SampleListActivity.class));
+                break;
+        }
+        return true;
     }
 }
