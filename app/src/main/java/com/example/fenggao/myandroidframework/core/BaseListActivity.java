@@ -3,15 +3,11 @@ package com.example.fenggao.myandroidframework.core;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.fenggao.myandroidframework.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by feng.gao on 2017/5/22.
@@ -32,7 +28,7 @@ public abstract class BaseListActivity<T> extends BaseActivity implements SwipeR
 
     @Override
     protected void setUpContentView() {
-        setContentView(R.layout.activity_sample_list ,-1);
+        setContentView(R.layout.activity_base_list,-1);
     }
 
     @Override
@@ -40,6 +36,12 @@ public abstract class BaseListActivity<T> extends BaseActivity implements SwipeR
         mBaseListAdapter = new BaseListAdapter();
         mRecyclerView.setLayoutManager(getLayoutManager());
         mRecyclerView.setAdapter(mBaseListAdapter);
+    }
+
+    /**
+     * 提取手动刷新的方法
+     */
+    protected void setRefreshing() {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {

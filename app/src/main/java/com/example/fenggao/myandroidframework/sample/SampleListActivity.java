@@ -15,7 +15,6 @@ import com.example.fenggao.myandroidframework.core.BaseViewHolder;
  */
 
 public class SampleListActivity extends BaseListActivity<String> implements SwipeRefreshLayout.OnRefreshListener {
-    private SampleListAdapter mSampleListAdapter;
 
     @Override
     protected void setUpTitle(int titleResId) {
@@ -25,7 +24,7 @@ public class SampleListActivity extends BaseListActivity<String> implements Swip
     @Override
     protected void setUpData() {
         super.setUpData();
-        mSampleListAdapter = new SampleListAdapter();
+        setRefreshing();
     }
 
     @Override
@@ -34,7 +33,6 @@ public class SampleListActivity extends BaseListActivity<String> implements Swip
         for (int i = 0; i < 50; i++) {
             mData.add("Sample list item" + i);
         }
-        mSampleListAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -44,12 +42,6 @@ public class SampleListActivity extends BaseListActivity<String> implements Swip
         return new SampleViewHolder(view);
     }
 
-    private class SampleListAdapter extends BaseListAdapter {
-        @Override
-        public int getItemCount() {
-            return mData.size();
-        }
-    }
 
     private class SampleViewHolder extends BaseViewHolder {
         TextView mTextView;
