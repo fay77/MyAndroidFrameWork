@@ -14,7 +14,7 @@ import com.example.fenggao.myandroidframework.core.BaseViewHolder;
  * Created by feng.gao on 2017/5/22.
  */
 
-public class SampleListActivity extends BaseListActivity<String> implements SwipeRefreshLayout.OnRefreshListener {
+public class SampleListActivity extends BaseListActivity<String>  {
 
     @Override
     protected void setUpTitle(int titleResId) {
@@ -22,18 +22,12 @@ public class SampleListActivity extends BaseListActivity<String> implements Swip
     }
 
     @Override
-    protected void setUpData() {
-        super.setUpData();
-        setRefreshing();
-    }
-
-    @Override
-    public void onRefresh() {
+    public void onRefresh(int action) {
         mData.clear();
         for (int i = 0; i < 50; i++) {
             mData.add("Sample list item" + i);
         }
-        mSwipeRefreshLayout.setRefreshing(false);
+        mRecycler.onRefreshCompleted();
     }
 
     @Override
@@ -46,13 +40,13 @@ public class SampleListActivity extends BaseListActivity<String> implements Swip
     private class SampleViewHolder extends BaseViewHolder {
         TextView mTextView;
 
-        public SampleViewHolder(View itemView) {
+        private SampleViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.mSampleListItemLabel);
         }
 
         @Override
-        public void onBind(int position) {
+        public void onBindViewHolder(int position) {
             mTextView.setText(mData.get(position));
         }
     }

@@ -1,11 +1,13 @@
 package com.example.fenggao.myandroidframework.core;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.example.fenggao.myandroidframework.R;
+import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
 import java.util.ArrayList;
 
@@ -13,17 +15,14 @@ import java.util.ArrayList;
  * Created by feng.gao on 2017/5/22.
  */
 
-public abstract class BaseListActivity<T> extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
-    protected SwipeRefreshLayout mSwipeRefreshLayout;
-    protected RecyclerView mRecyclerView;
+public abstract class BaseListActivity<T> extends BaseActivity implements PullToRefreshRecycler.OnRecyclerRefreshListener {
     protected ArrayList<T> mData = new ArrayList<>();
     private BaseListAdapter mBaseListAdapter;
+    protected PullToRefreshRecycler mRecycler;
 
     @Override
     protected void setUpView() {
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.mSwipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycleView);
+        mRecycler = (PullToRefreshRecycler) findViewById(R.id.pullToRefreshRecycler);
     }
 
     @Override
@@ -34,27 +33,33 @@ public abstract class BaseListActivity<T> extends BaseActivity implements SwipeR
     @Override
     protected void setUpData() {
         mBaseListAdapter = new BaseListAdapter();
-        mRecyclerView.setLayoutManager(getLayoutManager());
-        mRecyclerView.setAdapter(mBaseListAdapter);
+        mRecycler.setOnRefreshListener(this);
+        mRecycler.setLayoutManager(getLayoutManager());
+        mRecycler.addItemDecoration(getItemDecoration());
+        mRecycler.setAdapter(mBaseListAdapter);
+        mRecycler.setRefreshing();
     }
 
     /**
-     * 提取手动刷新的方法
+     * 默认分割线，竖直的横线，子类可以重写定制自己的分割线
+     * @return
      */
-    protected void setRefreshing() {
-        mSwipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-                onRefresh();
-            }
-        });
+    protected RecyclerView.ItemDecoration getItemDecoration() {
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(getResources().getDrawable(R.drawable.list_divider));
+        return itemDecoration;
     }
+
 
     protected RecyclerView.LayoutManager getLayoutManager() {
         return new LinearLayoutManager(this);
     }
 
+
+    @Override
+    public void onRefresh(int action) {
+
+    }
 
 
     public class BaseListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
@@ -68,7 +73,7 @@ public abstract class BaseListActivity<T> extends BaseActivity implements SwipeR
 
         @Override
         public void onBindViewHolder(BaseViewHolder holder, int position) {
-            holder.onBind(position);
+            holder.onBindViewHolder(position);
         }
 
 
@@ -80,8 +85,12 @@ public abstract class BaseListActivity<T> extends BaseActivity implements SwipeR
 
         @Override
         public int getItemViewType(int position) {
-            return super.getItemViewType(position);
+            return getItemType(position);
         }
+    }
+
+    protected int getItemType(int position) {
+        return 0;
     }
 
     protected abstract BaseViewHolder getViewHolder(ViewGroup parent, int viewType);

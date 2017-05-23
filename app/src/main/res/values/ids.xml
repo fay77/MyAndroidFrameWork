@@ -4,4 +4,5 @@
     <item name="toolbar" type="id"/>
     <item name="toolbar_title" type="id"/>
     <item name="recycleView" type="id"/>
+    <item name="pullToRefreshRecycler" type="id"/>
 </resources>

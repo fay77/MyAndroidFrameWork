@@ -6,13 +6,8 @@
 
     <include layout="@layout/widget_toolbar"/>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/mSwipeRefreshLayout"
+    <com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler
+        android:id="@id/pullToRefreshRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@id/recycleView"
-           style="@style/RecycleViewStyle"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
-
+        android:layout_height="match_parent"/>
 </LinearLayout>
