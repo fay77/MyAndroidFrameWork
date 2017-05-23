@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.fenggao.myandroidframework.R;
 import com.example.fenggao.myandroidframework.core.BaseListActivity;
 import com.example.fenggao.myandroidframework.core.BaseViewHolder;
+import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
 /**
  * Created by feng.gao on 2017/5/22.
@@ -23,11 +24,20 @@ public class SampleListActivity extends BaseListActivity<String>  {
 
     @Override
     public void onRefresh(int action) {
-        mData.clear();
-        for (int i = 0; i < 50; i++) {
+        if (action == PullToRefreshRecycler.ACTION_PULL_TO_REFRESH) {
+            mData.clear();
+        }
+        int size = mData.size();
+        for (int i = size; i < size + 20 ; i++) {
             mData.add("Sample list item" + i);
         }
+        mBaseListAdapter.notifyDataSetChanged();
         mRecycler.onRefreshCompleted();
+        if (mData.size() < 100) {
+            mRecycler.enableLoadMore(true);
+        } else {
+            mRecycler.enableLoadMore(false);
+        }
     }
 
     @Override

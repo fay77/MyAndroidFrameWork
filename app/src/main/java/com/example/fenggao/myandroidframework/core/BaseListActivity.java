@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public abstract class BaseListActivity<T> extends BaseActivity implements PullToRefreshRecycler.OnRecyclerRefreshListener {
     protected ArrayList<T> mData = new ArrayList<>();
-    private BaseListAdapter mBaseListAdapter;
+    protected BaseListAdapter mBaseListAdapter;
     protected PullToRefreshRecycler mRecycler;
 
     @Override
