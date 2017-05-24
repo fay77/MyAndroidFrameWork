@@ -28,7 +28,7 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
     private int mCurrentState = ACTION_IDEL; //默认置为空闲状态
     private boolean isLoadMoreEnabled = false; //是否支持加载更多
     private boolean isPullToRefreshEnable = true; //是否支持下拉刷新
-    private RecyclerView.LayoutManager mLayoutmanager;
+    private ILayoutManager mILayoutManager;
 
     public PullToRefreshRecycler(@NonNull Context context) {
         super(context);
@@ -73,15 +73,12 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
         });
     }
 
-    /**
-     * 检查当前是否是最后一个可见Item
-     * @return
-     */
-    private boolean checkIfLoadMore() {
-        int position = ((LinearLayoutManager) mLayoutmanager).findLastVisibleItemPosition();
-        int totalCount = mLayoutmanager.getItemCount();
+    public boolean checkIfLoadMore() {
+        int position = mILayoutManager.findLastVisiblePosition();
+        int totalCount = mILayoutManager.getLayoutManager().getItemCount();
         return totalCount - position < 5;
     }
+
 
     //对外暴露的方法设置是否支持下拉刷新与加载更多
     public void enableLoadMore(boolean enable) {
@@ -91,9 +88,9 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
         isPullToRefreshEnable = enable;
     }
 
-    public void setLayoutManager(RecyclerView.LayoutManager manager) {
-        this.mLayoutmanager = manager;
-        mRecyclerView.setLayoutManager(manager);
+    public void setLayoutManager(ILayoutManager manager) {
+        this.mILayoutManager = manager;
+        mRecyclerView.setLayoutManager(manager.getLayoutManager());
     }
 
     public void addItemDecoration(RecyclerView.ItemDecoration decoration) {

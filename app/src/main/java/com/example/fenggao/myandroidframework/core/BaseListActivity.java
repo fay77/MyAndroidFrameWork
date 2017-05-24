@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.example.fenggao.myandroidframework.R;
+import com.example.fenggao.myandroidframework.wigets.pull.ILayoutManager;
+import com.example.fenggao.myandroidframework.wigets.pull.MyLinearLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
 import java.util.ArrayList;
@@ -51,8 +53,8 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullTo
     }
 
 
-    protected RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this);
+    protected ILayoutManager getLayoutManager() {
+        return new MyLinearLayoutManager(this);
     }
 
 
