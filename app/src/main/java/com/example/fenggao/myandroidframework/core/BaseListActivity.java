@@ -4,6 +4,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fenggao.myandroidframework.R;
@@ -65,11 +67,21 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullTo
 
 
     public class BaseListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+        private static final int VIEW_TYPE_LOAD_MORE_FOOTER = 100;
+        private boolean isShowLoadMoreFooter;
 
 
         @Override
         public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            if (viewType == VIEW_TYPE_LOAD_MORE_FOOTER) {
+                return getLoadMoreFooter(parent);
+            }
             return getViewHolder(parent , viewType);
+        }
+
+        protected BaseViewHolder getLoadMoreFooter(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_load_more_footer, parent , false);
+            return new LoadMoreFooterViewHolder(view);
         }
 
 
@@ -82,12 +94,37 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullTo
 
         @Override
         public int getItemCount() {
-            return mData != null ? mData.size() : 0;
+            return mData != null ? mData.size() + (isShowLoadMoreFooter ? 1 : 0) : 0;
         }
 
         @Override
         public int getItemViewType(int position) {
+            //需要显示更多并且已经是最后一个条目，则显示加载的view
+            if (isShowLoadMoreFooter && position == getItemCount() - 1) {
+                return VIEW_TYPE_LOAD_MORE_FOOTER;
+            }
             return getItemType(position);
+        }
+
+        public void showLoadMoreFoot(boolean isShowLoadMoreFooter) {
+            this.isShowLoadMoreFooter = isShowLoadMoreFooter;
+            if (isShowLoadMoreFooter) {
+                //增加底部item
+                notifyItemInserted(getItemCount());
+            } else {
+                notifyItemRemoved(getItemCount());
+            }
+        }
+
+        private class LoadMoreFooterViewHolder extends BaseViewHolder {
+            private LoadMoreFooterViewHolder(View view) {
+                super(view);
+            }
+
+            @Override
+            public void onBindViewHolder(int position) {
+
+            }
         }
     }
 

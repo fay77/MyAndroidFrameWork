@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import com.example.fenggao.myandroidframework.R;
+import com.example.fenggao.myandroidframework.core.BaseListActivity;
 
 /**
  * Created by feng.gao on 2017/5/23.
@@ -29,6 +30,7 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
     private boolean isLoadMoreEnabled = false; //是否支持加载更多
     private boolean isPullToRefreshEnable = true; //是否支持下拉刷新
     private ILayoutManager mILayoutManager;
+    private BaseListActivity.BaseListAdapter adapter;
 
     public PullToRefreshRecycler(@NonNull Context context) {
         super(context);
@@ -64,6 +66,8 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
                 if (mCurrentState == ACTION_IDEL && isLoadMoreEnabled && checkIfLoadMore()) {
                     //进入判断，执行我们加载更多的逻辑, 回调给上层现在可以加载更多了 , 改变当前状态 , 并且正在加载更多的时候是不允许下拉刷新的
                     mCurrentState = ACTION_LOAD_MORE_REFRESH;
+                    //在这里显示底部加载更多的view
+                    adapter.showLoadMoreFoot(true);
                     mSwipeRefreshLayout.setEnabled(false);//禁止下拉刷新 ， 这行如果不写即使不会执行逻辑但是下拉刷新的动画还是会有。
                     listener.onRefresh(ACTION_LOAD_MORE_REFRESH);
 
@@ -99,8 +103,9 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
         }
     }
 
-    public void setAdapter(RecyclerView.Adapter adapter) {
-        mRecyclerView.setAdapter(adapter);
+    public void setAdapter(BaseListActivity.BaseListAdapter adapter) {
+        this.adapter = adapter;
+          mRecyclerView.setAdapter(adapter);
     }
 
     public void setRefreshing() {
@@ -131,6 +136,8 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
                 break;
             case ACTION_LOAD_MORE_REFRESH:
                 //从scroll监听那边回调过来，由于改变了下拉刷新状态，这边要改回来，改回来的时候判断当前是否支持下拉刷新
+                //在这里关闭显示更多的view
+                adapter.showLoadMoreFoot(false);
                 if (isPullToRefreshEnable)
                 mSwipeRefreshLayout.setEnabled(true);//将下拉刷新重新设置为true
                 break;
