@@ -21,5 +21,5 @@
 </br>
     # 5.24： 新增支持listview、gridview和瀑布流的下拉刷新以及上拉显示更多自定义控件，初步效果图：
 </br>
-    </br>
-    ![img](https://github.com/fay77/MyAndroidFrameWork/blob/master/app/src/main/res/drawable-xxhdpi/pull_to_refresh.gif)
+
+![img](https://github.com/fay77/MyAndroidFrameWork/blob/master/app/src/main/res/drawable-xxhdpi/pull_to_refresh.gif)
