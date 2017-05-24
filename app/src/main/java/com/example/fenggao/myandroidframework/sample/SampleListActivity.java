@@ -1,5 +1,6 @@
 package com.example.fenggao.myandroidframework.sample;
 
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,11 @@ import android.widget.TextView;
 import com.example.fenggao.myandroidframework.R;
 import com.example.fenggao.myandroidframework.core.BaseListActivity;
 import com.example.fenggao.myandroidframework.core.BaseViewHolder;
+import com.example.fenggao.myandroidframework.wigets.pull.FootSpanSizeLookup;
 import com.example.fenggao.myandroidframework.wigets.pull.ILayoutManager;
+import com.example.fenggao.myandroidframework.wigets.pull.MyGridLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.MyLinearLayoutManager;
+import com.example.fenggao.myandroidframework.wigets.pull.MyStaggeredGridLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
 import java.util.ArrayList;
@@ -53,9 +57,18 @@ public class SampleListActivity extends BaseListActivity<String>  {
 
     }
 
+//    @Override
+//    protected ILayoutManager getLayoutManager() {
+//        MyGridLayoutManager manager = new MyGridLayoutManager(this, 3);
+//        FootSpanSizeLookup lookup = new FootSpanSizeLookup(mBaseListAdapter, 3);
+//        manager.setSpanSizeLookup(lookup);
+//        return manager;
+//    }
+
+
     @Override
     protected ILayoutManager getLayoutManager() {
-        return new MyLinearLayoutManager(this);
+        return new MyStaggeredGridLayoutManager(3 , StaggeredGridLayoutManager.VERTICAL);
     }
 
     @Override

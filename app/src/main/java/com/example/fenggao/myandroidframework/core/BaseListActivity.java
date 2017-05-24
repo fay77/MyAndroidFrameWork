@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,15 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullTo
 
         @Override
         public void onBindViewHolder(BaseViewHolder holder, int position) {
+            //如果是瀑布流，将底部的view设置为一整行独立显示，setFullSpan设置为true即可。
+            if (isShowLoadMoreFooter && position == getItemCount() - 1){
+                if (holder.itemView.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
+                    StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+                    params.setFullSpan(true);
+                }
+            }
             holder.onBindViewHolder(position);
+
         }
 
 
@@ -114,6 +123,11 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullTo
             } else {
                 notifyItemRemoved(getItemCount());
             }
+        }
+
+            //  返回是否已经达到底部
+        public boolean isFooterView(int position) {
+            return isShowLoadMoreFooter && position == getItemCount() - 1;
         }
 
         private class LoadMoreFooterViewHolder extends BaseViewHolder {
