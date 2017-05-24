@@ -7,9 +7,6 @@ import android.view.View;
 import com.example.fenggao.myandroidframework.R;
 import com.example.fenggao.myandroidframework.constants.ConstantValues;
 import com.example.fenggao.myandroidframework.core.BaseActivity;
-import com.example.fenggao.myandroidframework.core.CustomApplication;
-
-import java.util.ArrayList;
 
 /**
  * Created by feng.gao on 2017/5/17.
@@ -22,7 +19,7 @@ public class HomeActivity extends BaseActivity {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                startActivity(new Intent(HomeActivity.this, ContentActivity.class));
             }
         });
     }

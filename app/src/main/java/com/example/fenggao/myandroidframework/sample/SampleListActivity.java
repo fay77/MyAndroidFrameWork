@@ -11,6 +11,8 @@ import com.example.fenggao.myandroidframework.core.BaseListActivity;
 import com.example.fenggao.myandroidframework.core.BaseViewHolder;
 import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
+import java.util.ArrayList;
+
 /**
  * Created by feng.gao on 2017/5/22.
  */
@@ -24,6 +26,9 @@ public class SampleListActivity extends BaseListActivity<String>  {
 
     @Override
     public void onRefresh(int action) {
+        if (mData == null) {
+            mData = new ArrayList<>();
+        }
         if (action == PullToRefreshRecycler.ACTION_PULL_TO_REFRESH) {
             mData.clear();
         }
