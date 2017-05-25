@@ -11,4 +11,6 @@ public interface ILayoutManager {
     int findLastVisiblePosition();
 
     RecyclerView.LayoutManager getLayoutManager();
+
+    void setUpAdapter(BaseListAdapter adapter);
 }

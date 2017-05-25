@@ -29,4 +29,9 @@ public class MyStaggeredGridLayoutManager extends StaggeredGridLayoutManager imp
     public RecyclerView.LayoutManager getLayoutManager() {
         return this;
     }
+
+    @Override
+    public void setUpAdapter(BaseListAdapter adapter) {
+
+    }
 }

@@ -31,4 +31,10 @@ public class MyGridLayoutManager extends GridLayoutManager implements ILayoutMan
     public RecyclerView.LayoutManager getLayoutManager() {
         return this;
     }
+
+    @Override
+    public void setUpAdapter(BaseListAdapter adapter) {
+        FootSpanSizeLookup lookup = new FootSpanSizeLookup(adapter, getSpanCount());
+        setSpanSizeLookup(lookup);
+    }
 }

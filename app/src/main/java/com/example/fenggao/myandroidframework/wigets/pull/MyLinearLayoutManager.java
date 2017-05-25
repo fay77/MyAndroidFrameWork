@@ -34,4 +34,9 @@ public class MyLinearLayoutManager extends LinearLayoutManager implements ILayou
     public RecyclerView.LayoutManager getLayoutManager() {
         return this;
     }
+
+    @Override
+    public void setUpAdapter(BaseListAdapter adapter) {
+
+    }
 }

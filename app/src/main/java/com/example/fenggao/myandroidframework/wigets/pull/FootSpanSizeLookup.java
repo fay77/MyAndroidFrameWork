@@ -11,17 +11,17 @@ import com.example.fenggao.myandroidframework.core.BaseListActivity;
  */
 
 public class FootSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
-    private BaseListActivity.BaseListAdapter mAdapter;
+    private BaseListAdapter mAdapter;
     private int mSpanCount;
 
-    public FootSpanSizeLookup(BaseListActivity.BaseListAdapter adapter, int spanCount) {
+    public FootSpanSizeLookup(BaseListAdapter adapter, int spanCount) {
         mAdapter = adapter;
         mSpanCount = spanCount;
     }
 
     @Override
     public int getSpanSize(int position) {
-        if (mAdapter.isFooterView(position)) {
+        if (mAdapter.isLoadMoreFooter(position)) {
             return mSpanCount;
         }
         return 1;

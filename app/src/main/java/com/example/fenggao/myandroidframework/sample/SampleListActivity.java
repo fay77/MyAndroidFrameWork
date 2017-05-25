@@ -45,7 +45,7 @@ public class SampleListActivity extends BaseListActivity<String>  {
                 for (int i = size; i < size + 20 ; i++) {
                     mData.add("Sample list item" + i);
                 }
-                mBaseListAdapter.notifyDataSetChanged();
+                mAdapter.notifyDataSetChanged();
                 mRecycler.onRefreshCompleted();
                 if (mData.size() < 100) {
                     mRecycler.enableLoadMore(true);
