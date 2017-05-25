@@ -24,4 +24,4 @@
 
 ![img](https://github.com/fay77/MyAndroidFrameWork/blob/master/app/src/main/res/drawable-xxhdpi/pull_to_refresh.gif)
 
-5.24: 新增BaseFragment，支持Fragment中的下拉刷新，加载更多列表。
+5.25: 新增BaseFragment，支持Fragment中的下拉刷新，加载更多列表。
