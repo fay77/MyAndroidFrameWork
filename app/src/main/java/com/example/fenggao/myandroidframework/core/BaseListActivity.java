@@ -38,12 +38,19 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullTo
 
     @Override
     protected void setUpData() {
-        mAdapter = new ListAdapter();
+        setUpAdapter();
         mRecycler.setOnRefreshListener(this);
         mRecycler.setLayoutManager(getLayoutManager());
         mRecycler.addItemDecoration(getItemDecoration());
         mRecycler.setAdapter(mAdapter);
         mRecycler.setRefreshing();
+    }
+
+    /**
+     * 子类可以重写该方法，扩展adapter
+     */
+    protected void setUpAdapter() {
+        mAdapter = new ListAdapter();
     }
 
     /**

@@ -2,4 +2,7 @@
     <string name="app_name">MyAndroidFrameWork</string>
     <string name="sample_list_title">Sample list</string>
     <string name="profile_title">Profile Title</string>
+    <string name="title_framework_main">我的Android项目（MD版）</string>
+    <string name="title_recycler_fragment">我在fragment</string>
+    <string name="title_recycler_activity">我在Activity</string>
 </resources>

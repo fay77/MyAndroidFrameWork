@@ -26,7 +26,7 @@ public class SampleListActivity extends BaseListActivity<String>  {
 
     @Override
     protected void setUpTitle(int titleResId) {
-        super.setUpTitle(R.string.sample_list_title);
+        super.setUpTitle(R.string.title_recycler_activity);
     }
 
     @Override
@@ -84,6 +84,11 @@ public class SampleListActivity extends BaseListActivity<String>  {
         private SampleViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.mSampleListItemLabel);
+        }
+
+        @Override
+        public void onItemClick(View v, int adapterPosition) {
+
         }
 
         @Override

@@ -22,6 +22,7 @@
             android:launchMode="singleTask"/>
         <activity android:name=".sample.LoginActivity"/>
         <activity android:name=".sample.SampleListActivity"/>
+        <activity android:name=".sample.SampleListActivity1"/>
     </application>
 
 </manifest>

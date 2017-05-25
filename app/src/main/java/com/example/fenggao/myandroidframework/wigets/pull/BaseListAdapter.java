@@ -97,6 +97,11 @@ public abstract class BaseListAdapter extends RecyclerView.Adapter<BaseViewHolde
         }
 
         @Override
+        public void onItemClick(View v, int adapterPosition) {
+
+        }
+
+        @Override
         public void onBindViewHolder(int position) {
         }
     }

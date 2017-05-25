@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.BoolRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +21,7 @@ import com.example.fenggao.myandroidframework.utils.L;
  * Created by feng.gao on 2017/5/17.
  */
 
-public abstract class BaseActivity extends Activity implements View.OnClickListener, Toolbar.OnMenuItemClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener, Toolbar.OnMenuItemClickListener {
     protected Toolbar mToolbar;
     protected TextView mToolbarTv;
     public static final int MODE_BACK = 0;
