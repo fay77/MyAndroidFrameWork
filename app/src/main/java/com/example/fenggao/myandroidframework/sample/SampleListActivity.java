@@ -9,10 +9,7 @@ import android.widget.TextView;
 import com.example.fenggao.myandroidframework.R;
 import com.example.fenggao.myandroidframework.core.BaseListActivity;
 import com.example.fenggao.myandroidframework.core.BaseViewHolder;
-import com.example.fenggao.myandroidframework.wigets.pull.FootSpanSizeLookup;
 import com.example.fenggao.myandroidframework.wigets.pull.ILayoutManager;
-import com.example.fenggao.myandroidframework.wigets.pull.MyGridLayoutManager;
-import com.example.fenggao.myandroidframework.wigets.pull.MyLinearLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.MyStaggeredGridLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
