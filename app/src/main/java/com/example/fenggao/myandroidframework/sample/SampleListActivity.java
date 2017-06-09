@@ -10,6 +10,7 @@ import com.example.fenggao.myandroidframework.R;
 import com.example.fenggao.myandroidframework.core.BaseListActivity;
 import com.example.fenggao.myandroidframework.core.BaseViewHolder;
 import com.example.fenggao.myandroidframework.wigets.pull.ILayoutManager;
+import com.example.fenggao.myandroidframework.wigets.pull.MyGridLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.MyStaggeredGridLayoutManager;
 import com.example.fenggao.myandroidframework.wigets.pull.PullToRefreshRecycler;
 
@@ -65,7 +66,7 @@ public class SampleListActivity extends BaseListActivity<String>  {
 
     @Override
     protected ILayoutManager getLayoutManager() {
-        return new MyStaggeredGridLayoutManager(3 , StaggeredGridLayoutManager.VERTICAL);
+        return new MyGridLayoutManager(this , 3);
     }
 
     @Override

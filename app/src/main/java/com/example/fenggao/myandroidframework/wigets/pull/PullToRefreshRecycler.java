@@ -106,6 +106,7 @@ public class PullToRefreshRecycler extends FrameLayout implements SwipeRefreshLa
     public void setAdapter(BaseListAdapter adapter) {
         this.adapter = adapter;
           mRecyclerView.setAdapter(adapter);
+        mILayoutManager.setUpAdapter(adapter);
     }
 
     public void setRefreshing() {
